@@ -15,12 +15,15 @@ def load_team_game_log(df):
 if __name__ == "__main__":
     from extract import fetch_player_game_logs, fetch_team_game_logs
     from transform import transform_player_game_logs, transform_team_game_logs
+    from features import calculate_features
 
     player_logs = fetch_player_game_logs()
     team_logs = fetch_team_game_logs()
 
     player_logs = transform_player_game_logs(player_logs)
     team_logs = transform_team_game_logs(team_logs)
+
+    player_logs = calculate_features(player_logs,team_logs)
 
     load_player_game_log(player_logs)
     load_team_game_log(team_logs)
